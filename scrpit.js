@@ -52,4 +52,57 @@ function upperorlowercase() {
   }
 }
 inputButton4.addEventListener("click", upperorlowercase);
+
 // function 5
+function rockPaperScissors() {
+  let playerScore = 0;
+  let cpuScore = 0;
+  let rounds = 0;
+  while (true) {
+    let playerChoice = prompt("Rock, Paper or Scissors?!");
+    if (!playerChoice) {
+      alert("Game Over!");
+      return;
+    }
+    playerChoice = playerChoice.toLowerCase().trim();
+    if (playerChoice === "quit") {
+      alert(
+        `Game Over!\nFinal Score - You: ${playerScore}, Computer: ${cpuScore}`
+      );
+      return;
+    }
+    // if player choice is not either rock paper or scissors then alert massage and continue the loop
+    if (
+      playerChoice !== "rock" &&
+      playerChoice !== "paper" &&
+      playerChoice !== "scissors"
+    ) {
+      alert("Invalid choice! Please enter rock, paper, or scissors.");
+      continue;
+    }
+    const choices = ["rock", "paper", "scissors"];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    const cpuChoice = choices[randomIndex];
+    let result;
+    if (playerChoice === cpuChoice) {
+      result = "It's a tie!";
+    } else if (
+      (playerChoice === "rock" && cpuChoice === "scissors") ||
+      (playerChoice === "paper" && cpuChoice === "rock") ||
+      (playerChoice === "scissors" && cpuChoice === "paper")
+    ) {
+      result = "You win!";
+      playerScore++;
+    } else {
+      result = "Computer wins!";
+      cpuScore++;
+    }
+    rounds++;
+    alert(`Round ${rounds}:
+      You chose: ${playerChoice}
+      Computer chose: ${cpuChoice}
+      ${result}
+      Score - You: ${playerScore}, Computer: ${cpuScore}`);
+  }
+}
+inputButton5.addEventListener("click", rockPaperScissors);
